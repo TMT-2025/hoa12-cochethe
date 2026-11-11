@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BÀI TẬP TƯƠNG TÁC: CƠ CHẾ PHẢN ỨNG THẾ (HÓA HỌC 12 - KNTT)</title>
+  <title>BÀI KIỂM TRA 15 PHÚT: CƠ CHẾ PHẢN ỨNG HỮU CƠ (HÓA HỌC 12 - KNTT)</title>
   <style>
     :root {
       --primary: #4f46e5;
@@ -44,7 +44,7 @@
     header {
       background: linear-gradient(135deg, #3730a3 0%, #1e1b4b 50%, #0d9488 100%);
       color: white;
-      padding: 2.2rem 1.5rem;
+      padding: 2rem 1.5rem;
       text-align: center;
       box-shadow: var(--shadow);
     }
@@ -77,7 +77,7 @@
     }
 
     .container {
-      max-width: 960px;
+      max-width: 980px;
       margin: -1.5rem auto 0;
       padding: 0 1rem;
     }
@@ -99,7 +99,7 @@
 
     .dash-metrics {
       display: flex;
-      gap: 1.5rem;
+      gap: 1.25rem;
       flex-wrap: wrap;
     }
 
@@ -129,6 +129,16 @@
       color: var(--text-main);
     }
 
+    .metric-data .num.time-warning {
+      color: var(--danger);
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.05); }
+    }
+
     .metric-data .desc {
       font-size: 0.75rem;
       color: var(--text-muted);
@@ -139,21 +149,21 @@
     /* Tabs */
     .exercise-tabs {
       display: flex;
-      gap: 0.6rem;
+      gap: 0.45rem;
       flex-wrap: wrap;
     }
 
     .tab-btn {
-      padding: 0.6rem 1.2rem;
+      padding: 0.55rem 0.95rem;
       border: 1.5px solid var(--border);
-      border-radius: 10px;
+      border-radius: 8px;
       background: #f1f5f9;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       font-weight: 700;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.4rem;
       transition: all 0.2s;
     }
 
@@ -171,7 +181,7 @@
 
     .tab-score-pill {
       background: rgba(0,0,0,0.12);
-      padding: 2px 8px;
+      padding: 1px 7px;
       border-radius: 9999px;
       font-size: 0.75rem;
     }
@@ -251,10 +261,8 @@
       padding: 0.9rem 1.2rem;
       font-size: 0.95rem;
       margin-bottom: 1.5rem;
-      font-family: inherit;
     }
 
-    /* Subscripts and superscripts */
     sub, sup {
       font-size: 75%;
       line-height: 0;
@@ -264,7 +272,7 @@
     sub { bottom: -0.25em; }
     sup { top: -0.5em; }
 
-    /* DẠNG 1: SẮP XẾP THỨ TỰ (SEQUENCING & PHASE CLASSIFICATION) */
+    /* DẠNG 1: SẮP XẾP THỨ TỰ (SEQUENCING) */
     .order-box {
       display: flex;
       flex-direction: column;
@@ -282,12 +290,6 @@
       align-items: center;
       gap: 1rem;
       transition: all 0.2s;
-      box-shadow: 0 1px 2px rgba(0,0,0,0.04);
-    }
-
-    .order-card:hover {
-      border-color: var(--primary);
-      box-shadow: 0 4px 6px -1px rgba(0,0,0,0.08);
     }
 
     .order-left {
@@ -354,7 +356,6 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.15s;
     }
 
     .btn-move:hover:not(:disabled) {
@@ -368,7 +369,103 @@
       cursor: not-allowed;
     }
 
-    /* DẠNG 2: BẢNG MA TRẬN PHÂN LOẠI Sn1 VS Sn2 */
+    /* MCQ Questions */
+    .mcq-container {
+      margin-top: 1.5rem;
+      border-top: 2px dashed var(--border);
+      padding-top: 1.5rem;
+    }
+
+    .mcq-card {
+      background: #fafbfc;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .mcq-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-main);
+      margin-bottom: 0.75rem;
+    }
+
+    .mcq-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .mcq-opt {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.65rem;
+      padding: 0.7rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      background: white;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.2s;
+    }
+
+    .mcq-opt:hover:not(.locked) {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .mcq-opt.selected {
+      border-color: var(--primary);
+      background: #ede9fe;
+      font-weight: 600;
+    }
+
+    .mcq-circle {
+      min-width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 800;
+      background: white;
+      margin-top: 2px;
+    }
+
+    .mcq-opt.selected .mcq-circle {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: white;
+    }
+
+    .mcq-opt.correct {
+      background: var(--success-light) !important;
+      border-color: var(--success) !important;
+      color: #14532d;
+    }
+
+    .mcq-opt.correct .mcq-circle {
+      background: var(--success);
+      border-color: var(--success);
+      color: white;
+    }
+
+    .mcq-opt.wrong {
+      background: var(--danger-light) !important;
+      border-color: var(--danger) !important;
+      color: #7f1d1d;
+    }
+
+    .mcq-opt.wrong .mcq-circle {
+      background: var(--danger);
+      border-color: var(--danger);
+      color: white;
+    }
+
+    /* DẠNG 2: BẢNG MA TRẬN Sn1 VS Sn2 */
     .matrix-table {
       width: 100%;
       border-collapse: collapse;
@@ -436,7 +533,7 @@
       border-color: var(--danger) !important;
     }
 
-    /* DẠNG 3: MÔ PHỎNG ĐA BƯỚC SEAr (BENZENE BROMINE HÓA) */
+    /* DẠNG 3: SEAr BENZENE */
     .sear-stages {
       display: flex;
       flex-direction: column;
@@ -537,6 +634,79 @@
       color: white;
     }
 
+    /* DẠNG 5: ĐÚNG / SAI CỘNG ELECTROPHILE */
+    .tf-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .tf-table th {
+      background: #f1f5f9;
+      padding: 0.85rem 1rem;
+      font-size: 0.95rem;
+      font-weight: 800;
+      border: 1px solid var(--border);
+      text-align: left;
+    }
+
+    .tf-table th.center {
+      text-align: center;
+      width: 110px;
+    }
+
+    .tf-table td {
+      padding: 0.85rem 1rem;
+      border: 1px solid var(--border);
+      vertical-align: middle;
+      font-size: 0.95rem;
+    }
+
+    .tf-btn {
+      width: 100%;
+      padding: 7px 10px;
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
+      background: white;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      transition: all 0.2s;
+    }
+
+    .tf-btn:hover:not(.locked) {
+      border-color: var(--teal);
+      color: var(--teal);
+    }
+
+    .tf-btn.active-true {
+      background: var(--teal);
+      color: white;
+      border-color: var(--teal);
+    }
+
+    .tf-btn.active-false {
+      background: #475569;
+      color: white;
+      border-color: #475569;
+    }
+
+    .tf-btn.correct-val {
+      background: var(--success) !important;
+      color: white !important;
+      border-color: var(--success) !important;
+    }
+
+    .tf-btn.wrong-val {
+      background: var(--danger) !important;
+      color: white !important;
+      border-color: var(--danger) !important;
+    }
+
     /* Actions & Feedback */
     .action-row {
       display: flex;
@@ -548,7 +718,7 @@
     }
 
     .btn {
-      padding: 0.7rem 1.5rem;
+      padding: 0.7rem 1.4rem;
       border-radius: 8px;
       font-size: 0.95rem;
       font-weight: 700;
@@ -560,91 +730,31 @@
       transition: all 0.2s;
     }
 
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-    }
-
-    .btn-primary:hover:not(:disabled) {
-      background: var(--primary-dark);
-    }
-
-    .btn-teal {
-      background: var(--teal);
-      color: white;
-    }
-
-    .btn-teal:hover:not(:disabled) {
-      filter: brightness(1.1);
-    }
-
-    .btn-secondary {
-      background: white;
-      border-color: var(--border);
-      color: var(--text-main);
-    }
-
-    .btn-secondary:hover:not(:disabled) {
-      background: #f1f5f9;
-    }
-
-    .btn:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-    }
+    .btn-primary { background: var(--primary); color: white; }
+    .btn-primary:hover:not(:disabled) { background: var(--primary-dark); }
+    .btn-teal { background: var(--teal); color: white; }
+    .btn-teal:hover:not(:disabled) { filter: brightness(1.1); }
+    .btn-secondary { background: white; border-color: var(--border); color: var(--text-main); }
+    .btn-secondary:hover:not(:disabled) { background: #f1f5f9; }
+    .btn:disabled { opacity: 0.4; cursor: not-allowed; }
 
     .feedback-panel {
       margin-top: 1.5rem;
       border-radius: 10px;
       padding: 1.25rem 1.5rem;
       display: none;
-      animation: fadeIn 0.3s;
       border-left: 5px solid;
     }
 
-    .feedback-panel.success {
-      background: var(--success-light);
-      border-color: var(--success);
-      color: #14532d;
-    }
+    .feedback-panel.success { background: var(--success-light); border-color: var(--success); color: #14532d; }
+    .feedback-panel.partial { background: var(--amber-light); border-color: var(--amber); color: #78350f; }
+    .feedback-panel.fail { background: var(--danger-light); border-color: var(--danger); color: #7f1d1d; }
 
-    .feedback-panel.partial {
-      background: var(--amber-light);
-      border-color: var(--amber);
-      color: #78350f;
-    }
+    .fb-heading { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+    .fb-body { font-size: 0.95rem; line-height: 1.6; color: var(--text-main); }
+    .citation { margin-top: 0.75rem; padding-top: 0.5rem; border-top: 1px dashed rgba(0,0,0,0.15); font-size: 0.82rem; font-style: italic; color: var(--text-muted); }
 
-    .feedback-panel.fail {
-      background: var(--danger-light);
-      border-color: var(--danger);
-      color: #7f1d1d;
-    }
-
-    .fb-heading {
-      font-size: 1.1rem;
-      font-weight: 800;
-      margin-bottom: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .fb-body {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      color: var(--text-main);
-    }
-
-    .citation {
-      margin-top: 0.75rem;
-      padding-top: 0.5rem;
-      border-top: 1px dashed rgba(0,0,0,0.15);
-      font-size: 0.82rem;
-      font-style: italic;
-      color: var(--text-muted);
-    }
-
-    /* Final Summary View */
+    /* Summary Panel */
     .summary-view {
       display: none;
       background: var(--card-bg);
@@ -678,23 +788,12 @@
       justify-content: center;
     }
 
-    .score-big {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: var(--teal);
-      line-height: 1;
-    }
-
-    .score-sub {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      font-weight: 700;
-    }
+    .score-big { font-size: 2.2rem; font-weight: 800; color: var(--teal); line-height: 1; }
+    .score-sub { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; font-weight: 700; }
 
     .summary-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 1rem;
       margin: 2rem 0;
       text-align: left;
@@ -704,22 +803,13 @@
       background: #f8fafc;
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 1.2rem;
+      padding: 1rem;
     }
 
-    .summary-card-item h4 {
-      font-size: 0.95rem;
-      color: var(--primary-dark);
-      margin-bottom: 0.3rem;
-    }
+    .summary-card-item h4 { font-size: 0.9rem; color: var(--primary-dark); margin-bottom: 0.3rem; }
+    .summary-card-item .pts { font-size: 1.2rem; font-weight: 800; color: var(--text-main); }
 
-    .summary-card-item .pts {
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--text-main);
-    }
-
-    /* Modal Thông tin Học sinh */
+    /* Student Info Modal */
     .modal-overlay {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -730,7 +820,6 @@
       justify-content: center;
       z-index: 9999;
       padding: 1rem;
-      animation: fadeIn 0.25s ease-out;
     }
 
     .modal-box {
@@ -743,42 +832,11 @@
       border: 1px solid var(--border);
     }
 
-    .modal-title {
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--primary-dark);
-      margin-bottom: 0.4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .form-group {
-      margin-top: 1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-      text-align: left;
-    }
-
-    .form-group label {
-      font-weight: 700;
-      font-size: 0.9rem;
-      color: var(--text-main);
-    }
-
-    .form-group input {
-      padding: 0.75rem 1rem;
-      border: 1.5px solid var(--border);
-      border-radius: 8px;
-      font-size: 1rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .form-group input:focus {
-      border-color: var(--primary);
-    }
+    .modal-title { font-size: 1.35rem; font-weight: 800; color: var(--primary-dark); margin-bottom: 0.4rem; }
+    .form-group { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.35rem; text-align: left; }
+    .form-group label { font-weight: 700; font-size: 0.9rem; color: var(--text-main); }
+    .form-group input { padding: 0.75rem 1rem; border: 1.5px solid var(--border); border-radius: 8px; font-size: 1rem; outline: none; }
+    .form-group input:focus { border-color: var(--primary); }
 
     .submit-box-panel {
       margin-top: 1.5rem;
@@ -803,20 +861,15 @@
       letter-spacing: 1px;
     }
 
-    footer {
-      text-align: center;
-      color: var(--text-muted);
-      font-size: 0.85rem;
-      margin-top: 3rem;
-    }
+    footer { text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 3rem; }
   </style>
 </head>
 <body>
 
   <header>
     <div class="badge">Sách Chuyên đề Hóa học 12 – Kết nối tri thức</div>
-    <h1>CHUYÊN ĐỀ 1: CƠ CHẾ PHẢN ỨNG HỮU CƠ</h1>
-    <p>BÀI 2: CƠ CHẾ PHẢN ỨNG THẾ (S<sub>R</sub>, S<sub>E</sub>Ar, S<sub>N</sub>1, S<sub>N</sub>2)</p>
+    <h1>BÀI KIỂM TRA 15 PHÚT: CƠ CHẾ PHẢN ỨNG HỮU CƠ</h1>
+    <p>Chuyên đề 1: Phản ứng Thế (S<sub>R</sub>, S<sub>N</sub>1, S<sub>N</sub>2, S<sub>E</sub>Ar) & Phản ứng Cộng Electrophile (A<sub>E</sub>)</p>
   </header>
 
   <div class="container">
@@ -826,14 +879,14 @@
         <div class="metric-card">
           <div class="metric-icon time">⏱️</div>
           <div class="metric-data">
-            <div class="num" id="timer-display">00:00</div>
-            <div class="desc">Thời gian làm bài</div>
+            <div class="num" id="timer-display">15:00</div>
+            <div class="desc" id="timer-lbl">Thời gian đếm lùi</div>
           </div>
         </div>
         <div class="metric-card">
           <div class="metric-icon score">⭐</div>
           <div class="metric-data">
-            <div class="num" id="total-score-display">0 / 30</div>
+            <div class="num" id="total-score-display">0 / 50</div>
             <div class="desc">Tổng điểm tích lũy</div>
           </div>
         </div>
@@ -848,46 +901,57 @@
 
       <div class="exercise-tabs">
         <button class="tab-btn active" id="tab-btn-0" onclick="switchExercise(0)">
-          <span>Bài 1: Thế Gốc S<sub>R</sub></span>
+          <span>Bài 1: S<sub>R</sub> (Gốc)</span>
           <span class="tab-score-pill" id="tab-score-0">0/10đ</span>
         </button>
         <button class="tab-btn" id="tab-btn-1" onclick="switchExercise(1)">
-          <span>Bài 2: Phân loại S<sub>N</sub>1 vs S<sub>N</sub>2</span>
+          <span>Bài 2: S<sub>N</sub>1 & S<sub>N</sub>2</span>
           <span class="tab-score-pill" id="tab-score-1">0/10đ</span>
         </button>
         <button class="tab-btn" id="tab-btn-2" onclick="switchExercise(2)">
-          <span>Bài 3: Thế Thơm S<sub>E</sub>Ar</span>
+          <span>Bài 3: S<sub>E</sub>Ar (Thơm)</span>
           <span class="tab-score-pill" id="tab-score-2">0/10đ</span>
+        </button>
+        <button class="tab-btn" id="tab-btn-3" onclick="switchExercise(3)">
+          <span>Bài 4: Vận dụng thế</span>
+          <span class="tab-score-pill" id="tab-score-3">0/10đ</span>
+        </button>
+        <button class="tab-btn" id="tab-btn-4" onclick="switchExercise(4)">
+          <span>Bài 5: Cộng A<sub>E</sub></span>
+          <span class="tab-score-pill" id="tab-score-4">0/10đ</span>
         </button>
       </div>
     </div>
 
-    <!-- EXERCISE 1: SẮP XẾP CHUỖI & PHÂN LOẠI GIAI ĐOẠN CƠ CHẾ S_R -->
+    <!-- BÀI TẬP 1: THẾ GỐC TỰ DO S_R (SẮP XẾP + 5 CÂU MCQ) -->
     <div class="exercise-view active" id="ex-view-0">
       <div class="ex-header">
         <div>
           <div class="ex-tags">
-            <span class="tag tag-blue">Dạng 1: Sắp xếp logic & Nhận diện giai đoạn</span>
-            <span class="tag tag-green">Phản ứng: Methane + Cl<sub>2</sub> (ánh sáng)</span>
-            <span class="tag tag-pts">Tối đa: 10 Điểm</span>
+            <span class="tag tag-blue">Bài 1: Cơ chế thế gốc tự do S<sub>R</sub></span>
+            <span class="tag tag-green">Phản ứng halogen hóa Alkane</span>
+            <span class="tag tag-pts">10 Điểm (5đ Sắp xếp + 5đ Trắc nghiệm)</span>
           </div>
           <h2 class="ex-title">Bài tập 1: Cơ chế thế gốc tự do (S<sub>R</sub>) vào Carbon no</h2>
         </div>
       </div>
 
       <div class="ex-desc">
-        Phản ứng chlorination methane diễn ra theo cơ chế thế gốc tự do (S<sub>R</sub>) qua phản ứng chuỗi dây chuyền.<br>
-        <strong>Nhiệm vụ của em:</strong><br>
-        1. Dùng các nút mũi tên <strong>[▲] [▼]</strong> để sắp xếp 4 phương trình phản ứng sơ cấp dưới đây theo đúng trình tự thời gian diễn ra phản ứng (từ bước 1 đến bước 4).<br>
-        2. Chọn đúng <strong>Giai đoạn</strong> tương ứng (<em>Khởi mào</em>, <em>Phát triển mạch - Bước 1</em>, <em>Phát triển mạch - Bước 2</em>, <em>Đứt mạch/Tắt mạch</em>) cho từng phản ứng.
+        <strong>Phần A (5 điểm):</strong> Dùng nút <strong>[▲] [▼]</strong> sắp xếp 4 phương trình theo đúng thứ tự thời gian phản ứng clo hóa methane, đồng thời chọn đúng <strong>Giai đoạn</strong> tương ứng.
       </div>
 
       <div class="formula-box">
         <strong>Phương trình tổng quát:</strong> CH<sub>4</sub> + Cl<sub>2</sub> ⎯⎯<sup>ánh sáng</sup>⎯→ CH<sub>3</sub>Cl + HCl
       </div>
 
-      <div class="order-box" id="ex1-order-list">
-        <!-- Injected via JavaScript -->
+      <div class="order-box" id="ex1-order-list"></div>
+
+      <!-- PHẦN B: 5 CÂU TRẮC NGHIỆM MCQ CHO BÀI 1 -->
+      <div class="mcq-container">
+        <h3 style="font-size: 1.15rem; color: var(--primary-dark); margin-bottom: 0.75rem;">
+          📝 Phần B (5 điểm): 5 Câu trắc nghiệm củng cố cơ chế S<sub>R</sub>
+        </h3>
+        <div id="ex1-mcq-list"></div>
       </div>
 
       <div class="feedback-panel" id="fb-0">
@@ -899,28 +963,27 @@
       <div class="action-row">
         <button class="btn btn-secondary" onclick="resetExercise1()">🔄 Xếp lại ban đầu</button>
         <div>
-          <button class="btn btn-primary" id="btn-check-0" onclick="checkExercise1()">Kiểm tra kết quả (10 điểm)</button>
+          <button class="btn btn-primary" id="btn-check-0" onclick="checkExercise1()">Kiểm tra kết quả Bài 1 (10đ)</button>
           <button class="btn btn-teal" onclick="switchExercise(1)">Sang Bài tập 2 ➡️</button>
         </div>
       </div>
     </div>
 
-    <!-- EXERCISE 2: MA TRẬN PHÂN LOẠI SO SÁNH Sn1 VS Sn2 -->
+    <!-- BÀI TẬP 2: MA TRẬN PHÂN LOẠI Sn1 VS Sn2 (5 CÂU DỄ HƠN) -->
     <div class="exercise-view" id="ex-view-1">
       <div class="ex-header">
         <div>
           <div class="ex-tags">
-            <span class="tag tag-blue">Dạng 2: Ma trận so sánh & Phân loại tính chất</span>
+            <span class="tag tag-blue">Bài 2: Phân loại cơ chế thế Nucleophile</span>
             <span class="tag tag-green">Phản ứng: R–X + NaOH (dung dịch)</span>
-            <span class="tag tag-pts">Tối đa: 10 Điểm</span>
+            <span class="tag tag-pts">Tối đa: 10 Điểm (2đ / tiêu chí)</span>
           </div>
           <h2 class="ex-title">Bài tập 2: Phân biệt hai cơ chế thế Nucleophile (S<sub>N</sub>1 và S<sub>N</sub>2)</h2>
         </div>
       </div>
 
       <div class="ex-desc">
-        Khi thủy phân dẫn xuất halogen trong môi trường kiềm, phản ứng có thể diễn ra theo cơ chế <strong>S<sub>N</sub>1 (đơn phân tử)</strong> hoặc <strong>S<sub>N</sub>2 (lưỡng phân tử)</strong> tùy thuộc vào bậc của dẫn xuất halogen và điều kiện phản ứng.<br>
-        <strong>Nhiệm vụ của em:</strong> Với mỗi tiêu chí so sánh ở bảng bên dưới, hãy click chọn vào cột <strong>S<sub>N</sub>1</strong> hoặc <strong>S<sub>N</sub>2</strong> tương ứng với đặc điểm đúng.
+        Dựa vào các đặc điểm cơ bản đã học trong SGK Hóa 12 KNTT (Trang 13), hãy click chọn vào cột <strong>S<sub>N</sub>1</strong> hoặc <strong>S<sub>N</sub>2</strong> tương ứng với mỗi tiêu chí bên dưới:
       </div>
 
       <table class="matrix-table">
@@ -931,9 +994,7 @@
             <th class="center">Cơ chế S<sub>N</sub>2</th>
           </tr>
         </thead>
-        <tbody id="ex2-matrix-body">
-          <!-- Injected via JavaScript -->
-        </tbody>
+        <tbody id="ex2-matrix-body"></tbody>
       </table>
 
       <div class="feedback-panel" id="fb-1">
@@ -945,18 +1006,18 @@
       <div class="action-row">
         <button class="btn btn-secondary" onclick="switchExercise(0)">⬅️ Quay lại Bài 1</button>
         <div>
-          <button class="btn btn-primary" id="btn-check-1" onclick="checkExercise2()">Kiểm tra kết quả (10 điểm)</button>
+          <button class="btn btn-primary" id="btn-check-1" onclick="checkExercise2()">Kiểm tra kết quả Bài 2 (10đ)</button>
           <button class="btn btn-teal" onclick="switchExercise(2)">Sang Bài tập 3 ➡️</button>
         </div>
       </div>
     </div>
 
-    <!-- EXERCISE 3: MÔ PHỎNG ĐA BƯỚC CƠ CHẾ SEAr VÀO VÒNG BENZENE -->
+    <!-- BÀI TẬP 3: MÔ PHỎNG SEAr BENZENE -->
     <div class="exercise-view" id="ex-view-2">
       <div class="ex-header">
         <div>
           <div class="ex-tags">
-            <span class="tag tag-blue">Dạng 3: Mô phỏng diễn biến cơ chế đa tầng</span>
+            <span class="tag tag-blue">Bài 3: Thế Electrophile nhân thơm (S<sub>E</sub>Ar)</span>
             <span class="tag tag-green">Phản ứng: C<sub>6</sub>H<sub>6</sub> + Br<sub>2</sub> (xúc tác FeBr<sub>3</sub>)</span>
             <span class="tag tag-pts">Tối đa: 10 Điểm</span>
           </div>
@@ -965,13 +1026,10 @@
       </div>
 
       <div class="ex-desc">
-        Hệ electron π liên hợp kín của vòng benzene rất bền vững, do đó phản ứng thế halogen vào vòng benzene đòi hỏi xúc tác acid Lewis (FeBr<sub>3</sub>) và trải qua cơ chế thế electrophile (S<sub>E</sub>Ar).<br>
-        <strong>Nhiệm vụ của em:</strong> Hãy hoàn thành 3 giai đoạn liên hoàn của phản ứng bằng cách chọn phương án chính xác nhất ở mỗi bước dưới đây.
+        Hệ electron π liên hợp kín của vòng benzene rất bền vững, phản ứng thế halogen đòi hỏi xúc tác acid Lewis (FeBr<sub>3</sub>). Hãy chọn phương án chính xác nhất ở mỗi bước dưới đây:
       </div>
 
-      <div class="sear-stages" id="ex3-stages-container">
-        <!-- Injected via JavaScript -->
-      </div>
+      <div class="sear-stages" id="ex3-stages-container"></div>
 
       <div class="feedback-panel" id="fb-2">
         <div class="fb-heading" id="fb-heading-2"></div>
@@ -982,8 +1040,85 @@
       <div class="action-row">
         <button class="btn btn-secondary" onclick="switchExercise(1)">⬅️ Quay lại Bài 2</button>
         <div>
-          <button class="btn btn-primary" id="btn-check-2" onclick="checkExercise3()">Kiểm tra kết quả (10 điểm)</button>
-          <button class="btn btn-teal" onclick="showFinalSummary()">Tổng kết & Xếp loại 🏆</button>
+          <button class="btn btn-primary" id="btn-check-2" onclick="checkExercise3()">Kiểm tra kết quả Bài 3 (10đ)</button>
+          <button class="btn btn-teal" onclick="switchExercise(3)">Sang Bài tập 4 ➡️</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BÀI TẬP 4: VẬN DỤNG QUY TẮC THẾ HALOGEN & ĐỊNH HƯỚNG NHÂN THƠM -->
+    <div class="exercise-view" id="ex-view-3">
+      <div class="ex-header">
+        <div>
+          <div class="ex-tags">
+            <span class="tag tag-blue">Bài 4: Vận dụng quy tắc thế</span>
+            <span class="tag tag-green">Quy tắc thế Alkane & Vòng thơm</span>
+            <span class="tag tag-pts">Tối đa: 10 Điểm (2đ / câu)</span>
+          </div>
+          <h2 class="ex-title">Bài tập 4: Vận dụng quy tắc thế Halogen và quy tắc định hướng thơm</h2>
+        </div>
+      </div>
+
+      <div class="ex-desc">
+        Vận dụng kiến thức về bậc carbon và hiệu ứng nhóm thế trên vòng benzene để chọn đáp án đúng cho 5 câu hỏi dưới đây:
+      </div>
+
+      <div id="ex4-mcq-container"></div>
+
+      <div class="feedback-panel" id="fb-3">
+        <div class="fb-heading" id="fb-heading-3"></div>
+        <div class="fb-body" id="fb-body-3"></div>
+        <div class="citation">📖 Căn cứ: Sách Chuyên đề Hóa học 12 KNTT - Bài 2 (Trang 11 - 13)</div>
+      </div>
+
+      <div class="action-row">
+        <button class="btn btn-secondary" onclick="switchExercise(2)">⬅️ Quay lại Bài 3</button>
+        <div>
+          <button class="btn btn-primary" id="btn-check-3" onclick="checkExercise4()">Kiểm tra kết quả Bài 4 (10đ)</button>
+          <button class="btn btn-teal" onclick="switchExercise(4)">Sang Bài tập 5 ➡️</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- BÀI TẬP 5: PHẢN ỨNG CỘNG ELECTROPHILE (A_E) - ĐÚNG / SAI MỨC ĐỘ BIẾT -->
+    <div class="exercise-view" id="ex-view-4">
+      <div class="ex-header">
+        <div>
+          <div class="ex-tags">
+            <span class="tag tag-blue">Bài 5: Phản ứng cộng Electrophile (A<sub>E</sub>)</span>
+            <span class="tag tag-green">Mức độ biết: Alkene + X<sub>2</sub> / HX</span>
+            <span class="tag tag-pts">Tối đa: 10 Điểm (2đ / câu)</span>
+          </div>
+          <h2 class="ex-title">Bài tập 5: Cơ chế phản ứng cộng Electrophile (A<sub>E</sub>) vào nối đôi &gt;C=C&lt;</h2>
+        </div>
+      </div>
+
+      <div class="ex-desc">
+        Xem xét 5 nhận định cơ bản dưới đây về phản ứng cộng electrophile (A<sub>E</sub>) vào alkene theo SGK Chuyên đề Hóa 12 KNTT (Bài 3). Hãy đánh giá mỗi nhận định là <strong>ĐÚNG</strong> hay <strong>SAI</strong>:
+      </div>
+
+      <table class="tf-table">
+        <thead>
+          <tr>
+            <th>Mệnh đề phát biểu về cơ chế cộng Electrophile (A<sub>E</sub>)</th>
+            <th class="center">ĐÚNG</th>
+            <th class="center">SAI</th>
+          </tr>
+        </thead>
+        <tbody id="ex5-tf-body"></tbody>
+      </table>
+
+      <div class="feedback-panel" id="fb-4">
+        <div class="fb-heading" id="fb-heading-4"></div>
+        <div class="fb-body" id="fb-body-4"></div>
+        <div class="citation">📖 Căn cứ: Sách Chuyên đề Hóa học 12 KNTT - Bài 3 (Trang 14 - 16)</div>
+      </div>
+
+      <div class="action-row">
+        <button class="btn btn-secondary" onclick="switchExercise(3)">⬅️ Quay lại Bài 4</button>
+        <div>
+          <button class="btn btn-primary" id="btn-check-4" onclick="checkExercise5()">Kiểm tra kết quả Bài 5 (10đ)</button>
+          <button class="btn btn-teal" onclick="showFinalSummary()">Tổng kết & Nộp bài 🏆</button>
         </div>
       </div>
     </div>
@@ -991,13 +1126,13 @@
     <!-- SUMMARY VIEW -->
     <div class="summary-view" id="summary-panel">
       <div style="font-size: 3rem;">🎓</div>
-      <h2 style="font-size: 1.6rem; font-weight: 800; margin-top: 0.5rem;">BẢNG TỔNG KẾT ĐÁNH GIÁ NĂNG LỰC</h2>
-      <p style="color: var(--text-muted);">Chuyên đề 1 - Bài 2: Cơ chế phản ứng thế (Hóa học 12 KNTT)</p>
+      <h2 style="font-size: 1.6rem; font-weight: 800; margin-top: 0.5rem;">BẢNG TỔNG KẾT ĐÁNH GIÁ NĂNG LỰC 15 PHÚT</h2>
+      <p style="color: var(--text-muted);">Chuyên đề 1: Cơ chế phản ứng hữu cơ (Hóa học 12 KNTT)</p>
 
       <div class="score-banner" id="score-banner-circle" style="--score-pct: 0;">
         <div class="score-inner">
           <div class="score-big" id="final-total-pts">0</div>
-          <div class="score-sub">Trên tổng 30 điểm</div>
+          <div class="score-sub">Trên tổng 50 điểm</div>
         </div>
       </div>
 
@@ -1005,19 +1140,24 @@
 
       <div class="summary-grid">
         <div class="summary-card-item">
-          <h4>Bài 1: Cơ chế thế gốc S<sub>R</sub></h4>
-          <div class="pts" id="sum-score-0">0 / 10 điểm</div>
-          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.3rem;">Sắp xếp quy trình 3 giai đoạn và phản ứng dây chuyền.</p>
+          <h4>Bài 1: Thế gốc S<sub>R</sub></h4>
+          <div class="pts" id="sum-score-0">0 / 10đ</div>
         </div>
         <div class="summary-card-item">
-          <h4>Bài 2: Phân loại S<sub>N</sub>1 & S<sub>N</sub>2</h4>
-          <div class="pts" id="sum-score-1">0 / 10 điểm</div>
-          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.3rem;">So sánh bậc dẫn xuất, cấu trúc không gian và số giai đoạn.</p>
+          <h4>Bài 2: S<sub>N</sub>1 & S<sub>N</sub>2</h4>
+          <div class="pts" id="sum-score-1">0 / 10đ</div>
         </div>
         <div class="summary-card-item">
-          <h4>Bài 3: Cơ chế thế thơm S<sub>E</sub>Ar</h4>
-          <div class="pts" id="sum-score-2">0 / 10 điểm</div>
-          <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.3rem;">Tạo tác nhân Br⁺, phức chất σ và tái lập hệ thơm bền vững.</p>
+          <h4>Bài 3: Thế thơm S<sub>E</sub>Ar</h4>
+          <div class="pts" id="sum-score-2">0 / 10đ</div>
+        </div>
+        <div class="summary-card-item">
+          <h4>Bài 4: Vận dụng thế</h4>
+          <div class="pts" id="sum-score-3">0 / 10đ</div>
+        </div>
+        <div class="summary-card-item">
+          <h4>Bài 5: Cộng A<sub>E</sub></h4>
+          <div class="pts" id="sum-score-4">0 / 10đ</div>
         </div>
       </div>
 
@@ -1025,12 +1165,12 @@
       <div class="submit-box-panel" id="submit-section">
         <h3 style="font-size: 1.15rem; color: var(--primary-dark); margin-bottom: 0.3rem;">📤 Nộp điểm về Sổ điểm Google Sheets của Giáo viên</h3>
         <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">
-          Điểm số của học sinh <strong id="sub-student-name">...</strong> (<span id="sub-student-class">...</span>) sẽ được tự động gửi và lưu trữ an toàn.
+          Học sinh: <strong id="sub-student-name">...</strong> (<span id="sub-student-class">...</span>)
         </p>
 
         <div style="margin-bottom: 1rem;">
           <div style="font-size: 0.85rem; color: var(--text-muted);">Mã xác thực bài nộp điện tử (Chống sửa điểm):</div>
-          <div class="verify-badge" id="sub-verify-code">H12-CH1-B2-0000</div>
+          <div class="verify-badge" id="sub-verify-code">H12-CD1-15P-0000</div>
         </div>
 
         <div style="display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap;">
@@ -1057,7 +1197,7 @@
   <div class="modal-overlay" id="student-modal">
     <div class="modal-box">
       <div class="modal-title">📝 Thông tin học sinh</div>
-      <p style="font-size: 0.88rem; color: var(--text-muted);">Vui lòng nhập thông tin chính xác để ghi nhận điểm vào sổ điểm của giáo viên.</p>
+      <p style="font-size: 0.88rem; color: var(--text-muted);">Vui lòng nhập thông tin chính xác để ghi nhận kết quả bài kiểm tra 15 phút.</p>
 
       <div class="form-group">
         <label>Họ và tên học sinh (*):</label>
@@ -1076,7 +1216,7 @@
 
       <div style="margin-top: 1.5rem; display: flex; justify-content: flex-end; gap: 0.5rem;">
         <button class="btn btn-teal" style="width: 100%; justify-content: center;" onclick="saveStudentInfo()">
-          Xác nhận & Bắt đầu làm bài 🚀
+          Xác nhận & Bắt đầu tính giờ 15 phút 🚀
         </button>
       </div>
     </div>
@@ -1089,11 +1229,10 @@
   <script>
     // =========================================================================
     // 🔗 CẤU HÌNH LIÊN KẾT GOOGLE SHEETS DÀNH CHO GIÁO VIÊN:
-    // Dán URL Web App của Google Apps Script bạn vừa tạo vào giữa hai dấu ngoặc kép bên dưới:
+    // Dán URL Web App của Google Apps Script bạn vừa tạo vào giữa hai dấu ngoặc kép:
     const GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycbzWykHXGgc_q31BL-6qDDTLngG5J0xOh_RG3LjeuM_bEbrFoBM0FbJnCdo0e8hRmtpy/exec"; 
-    // Ví dụ: const GOOGLE_SHEET_WEBAPP_URL = "https://script.google.com/macros/s/AKfycb.../exec";
     // =========================================================================
-    // Audio engine using Web Audio API (zero external assets)
+
     const AudioEngine = {
       ctx: null,
       init() {
@@ -1114,9 +1253,9 @@
           const t = this.ctx.currentTime;
 
           if (type === 'correct') {
-            osc.frequency.setValueAtTime(523.25, t); // C5
-            osc.frequency.exponentialRampToValueAtTime(659.25, t + 0.08); // E5
-            osc.frequency.exponentialRampToValueAtTime(783.99, t + 0.18); // G5
+            osc.frequency.setValueAtTime(523.25, t);
+            osc.frequency.exponentialRampToValueAtTime(659.25, t + 0.08);
+            osc.frequency.exponentialRampToValueAtTime(783.99, t + 0.18);
             gain.gain.setValueAtTime(0.18, t);
             gain.gain.exponentialRampToValueAtTime(0.01, t + 0.3);
             osc.start(t);
@@ -1142,19 +1281,15 @@
     // State
     const AppState = {
       currentTab: 0,
-      scores: [0, 0, 0],
-      checked: [false, false, false],
-      startTime: Date.now(),
+      scores: [0, 0, 0, 0, 0], // 5 bài x 10đ = 50đ
+      checked: [false, false, false, false, false],
+      timeRemaining: 15 * 60, // 15 phút đếm lùi = 900s
       timerId: null,
+      isTimeUp: false,
 
-      // Student Info
-      studentInfo: {
-        name: "",
-        className: "",
-        studentId: ""
-      },
+      studentInfo: { name: "", className: "", studentId: "" },
 
-      // Exercise 1 Data
+      // Exercise 1 Data (Phần A: Sắp xếp)
       ex1Items: [
         { id: "e1_prop2", reaction: "•CH<sub>3</sub> + Cl<sub>2</sub> ⎯→ CH<sub>3</sub>Cl + Cl•", correctPhase: "prop2", text: "Gốc methyl tấn công phân tử Cl₂ tạo sản phẩm chloromethane và tái sinh gốc Cl•." },
         { id: "e1_init", reaction: "Cl–Cl ⎯⎯<sup>hν</sup>⎯→ 2Cl•", correctPhase: "init", text: "Phân cắt đồng li phân tử Cl₂ dưới tác dụng của ánh sáng tạo ra 2 gốc tự do chlorine." },
@@ -1164,17 +1299,82 @@
       ex1CorrectOrder: ["e1_init", "e1_prop1", "e1_prop2", "e1_term"],
       ex1UserPhases: {},
 
-      // Exercise 2 Data
+      // Exercise 1 Data (Phần B: 5 câu MCQ S_R)
+      ex1MCQ: [
+        {
+          id: "m1",
+          q: "1. Ký hiệu S<sub>R</sub> trong phản ứng halogen hóa alkane là viết tắt của cụm từ tiếng Anh nào?",
+          opts: [
+            "Radical Substitution (Thế gốc tự do)",
+            "Reaction Synthesis (Tổng hợp phản ứng)",
+            "Reducing Substance (Chất khử)",
+            "Resonance State (Trạng thái cộng hưởng)"
+          ],
+          correct: 0,
+          exp: "S<sub>R</sub> là viết tắt của <strong>Substitution Radical</strong> (phản ứng thế theo cơ chế gốc tự do)."
+        },
+        {
+          id: "m2",
+          q: "2. Để phản ứng clo hóa methane (CH₄ + Cl₂) có thể bắt đầu xảy ra ở nhiệt độ phòng, điều kiện bắt buộc là gì?",
+          opts: [
+            "Chiếu sáng (khuếch tán) hν hoặc đun nóng",
+            "Có mặt xúc tác bột sắt Fe",
+            "Môi trường kiềm NaOH",
+            "Áp suất cao không cần ánh sáng"
+          ],
+          correct: 0,
+          exp: "Ánh sáng hoặc nhiệt độ cung cấp năng lượng để phân cắt đồng li liên kết Cl–Cl tạo các gốc tự do Cl• mở đầu phản ứng."
+        },
+        {
+          id: "m3",
+          q: "3. Trong cơ chế S<sub>R</sub>, tiểu phân trực tiếp tấn công phân tử methane ở bước phát triển mạch thứ nhất là:",
+          opts: [
+            "Gốc tự do chlorine (Cl•)",
+            "Phân tử Cl₂ trung hòa",
+            "Anion chloride (Cl⁻)",
+            "Cation chloronium (Cl⁺)"
+          ],
+          correct: 0,
+          exp: "Gốc tự do Cl• rất hoạt động, tấn công bẻ gãy liên kết C–H: Cl• + CH₄ → •CH₃ + HCl."
+        },
+        {
+          id: "m4",
+          q: "4. Khi brom hóa propane (CH₃–CH₂–CH₃ + Br₂, tỉ lệ 1:1, chiếu sáng), sản phẩm chính thu được là:",
+          opts: [
+            "2-bromopropane (CH₃–CHBr–CH₃)",
+            "1-bromopropane (CH₃–CH₂–CH₂Br)",
+            "1,2-dibromopropane",
+            "Cyclopropane"
+          ],
+          correct: 0,
+          exp: "Theo quy tắc thế halogen vào alkane: Phản ứng ưu tiên thế vào nguyên tử C bậc cao hơn do gốc tự do bậc 2 bền hơn gốc bậc 1."
+        },
+        {
+          id: "m5",
+          q: "5. Sự xuất hiện một lượng vết khí ethane (CH₃–CH₃) trong sản phẩm clo hóa methane là bằng chứng của giai đoạn nào?",
+          opts: [
+            "Giai đoạn đứt mạch / tắt mạch (Termination)",
+            "Giai đoạn khởi mào (Initiation)",
+            "Giai đoạn phát triển mạch (Propagation)",
+            "Phản ứng phụ của dung môi"
+          ],
+          correct: 0,
+          exp: "Hai gốc tự do methyl kết hợp với nhau: •CH₃ + •CH₃ → CH₃–CH₃ làm mất các gốc tự do, minh chứng rõ ràng cho giai đoạn đứt mạch."
+        }
+      ],
+      ex1UserMCQ: {},
+
+      // Exercise 2 Data (5 câu DỄ HƠN, bám sát SGK)
       ex2Criteria: [
-        { id: "c1", label: "Dẫn xuất halogen bậc 3 (như (CH₃)₃C–Br) ưu tiên phản ứng thế theo cơ chế này:", correct: "sn1", reason: "Carbocation bậc 3 bền vững do hiệu ứng đẩy electron của 3 nhóm methyl, thuận lợi tạo thành ở giai đoạn chậm." },
-        { id: "c2", label: "Dẫn xuất halogen bậc 1 (như CH₃CH₂–Br) và CH₃–Br ưu tiên phản ứng thế theo cơ chế này:", correct: "sn2", reason: "Ít bị án ngữ không gian, tạo điều kiện thuận lợi cho nucleophile OH⁻ tấn công từ phía sau." },
-        { id: "c3", label: "Phản ứng diễn ra qua 2 giai đoạn, có hình thành tiểu phân trung gian là carbocation phẳng:", correct: "sn1", reason: "Giai đoạn 1 chậm tách ion halogen tạo carbocation C⁺ lai hóa sp²; giai đoạn 2 nhanh nucleophile tấn công." },
-        { id: "c4", label: "Phản ứng diễn ra đồng thời trong 1 giai đoạn duy nhất qua trạng thái chuyển tiếp liên kết 5:", correct: "sn2", reason: "Liên kết C–Nu hình thành đồng thời với liên kết C–X bị đứt ra, không có chất trung gian cô lập được." },
-        { id: "c5", label: "Kèm theo hiện tượng nghịch đảo cấu hình không gian (nghịch đảo Walden) do tác nhân tấn công từ phía đối diện:", correct: "sn2", reason: "Nucleophile tấn công từ phía sau (backside attack) làm lật ngược cấu hình phân tử giống như chiếc ô bị lật trong gió." }
+        { id: "c1", label: "1. Dẫn xuất halogen bậc 3 (như (CH₃)₃C–Br) ưu tiên phản ứng thế theo cơ chế này:", correct: "sn1", reason: "Carbocation bậc 3 có độ bền cao nhất nên rất thuận lợi tạo thành ở giai đoạn chậm của cơ chế S_N1." },
+        { id: "c2", label: "2. Dẫn xuất halogen bậc 1 (như CH₃CH₂–Br) và CH₃–Br ưu tiên phản ứng thế theo cơ chế này:", correct: "sn2", reason: "Dẫn xuất bậc 1 ít bị cản trở không gian, tạo điều kiện cho tác nhân OH⁻ tấn công đồng thời." },
+        { id: "c3", label: "3. Chữ số 1 trong ký hiệu S_N1 biểu thị cơ chế thế nucleophile đơn phân tử (tốc độ chỉ phụ thuộc nồng độ dẫn xuất):", correct: "sn1", reason: "Số 1 = Unimolecular (đơn phân tử): tốc độ phản ứng v = k[R–X], không phụ thuộc nồng độ kiềm." },
+        { id: "c4", label: "4. Chữ số 2 trong ký hiệu S_N2 biểu thị cơ chế thế nucleophile lưỡng phân tử (tốc độ phụ thuộc cả 2 chất phản ứng):", correct: "sn2", reason: "Số 2 = Bimolecular (lưỡng phân tử): tốc độ v = k[R–X][Nu⁻], phụ thuộc đồng thời cả dẫn xuất và kiềm." },
+        { id: "c5", label: "5. Tác nhân nucleophile (như OH⁻) tấn công vào nguyên tử carbon từ phía đối diện với nguyên tử halogen (tấn công từ phía sau):", correct: "sn2", reason: "Cơ chế S_N2 diễn ra đồng thời một giai đoạn, OH⁻ bắt buộc tấn công từ phía đối diện nguyên tử halogen rời đi (backside attack)." }
       ],
       ex2UserAnswers: {},
 
-      // Exercise 3 Data
+      // Exercise 3 Data (SEAr)
       ex3Stages: [
         {
           id: "s1",
@@ -1183,20 +1383,20 @@
           options: [
             { text: "Nhận một cặp electron từ Br₂, làm phân cực và bẻ gãy liên kết Br–Br để sinh ra ion electrophile Br⁺ (hoặc phức Br⁺...[FeBr₄]⁻).", isCorrect: true },
             { text: "Khử trực tiếp benzene thành anion phenyl C₆H₅⁻ mang điện tích âm.", isCorrect: false },
-            { text: "Đóng vai trò làm dung môi trơ hòa tan benzene chứ không tham gia vào bất kỳ tương tác hóa học nào.", isCorrect: false }
+            { text: "Đóng vai trò làm dung môi trơ hòa tan benzene chứ không tham gia phản ứng.", isCorrect: false }
           ],
-          reason: "FeBr₃ là một acid Lewis mạnh (orbital d còn trống), tương tác với phân tử Br₂: Br₂ + FeBr₃ ⇄ Br⁺ + [FeBr₄]⁻ tạo tác nhân Br⁺ có ái lực electron cực mạnh."
+          reason: "FeBr₃ là acid Lewis mạnh, tương tác làm phân cực Br₂ tạo ra tác nhân electrophile Br⁺ có ái lực electron cực mạnh."
         },
         {
           id: "s2",
           title: "Giai đoạn 2: Tác nhân Electrophile tấn công vòng benzene",
-          prompt: "Khi ion Br⁺ tấn công vào vòng benzene, tiểu phân trung gian (phức chất σ) hình thành có đặc điểm cấu tạo nào sau đây?",
+          prompt: "Khi ion Br⁺ tấn công vào vòng benzene, tiểu phân trung gian (phức chất σ) hình thành có đặc điểm nào?",
           options: [
-            { text: "Là một carbocation trung gian giải tỏa điện tích dương qua 5 nguyên tử carbon còn lại của vòng, làm mất đi tính thơm tạm thời.", isCorrect: true },
+            { text: "Là một carbocation trung gian giải tỏa điện tích dương qua 5 nguyên tử carbon còn lại của vòng, làm mất tính thơm tạm thời.", isCorrect: true },
             { text: "Là một anion trung gian mang điện tích âm giải tỏa đều khắp vòng.", isCorrect: false },
             { text: "Là một phân tử trung hòa có cấu trúc tứ diện hoàn toàn bền vững.", isCorrect: false }
           ],
-          reason: "Tác nhân Br⁺ dùng 2 electron π của vòng tạo liên kết C–Br, nguyên tử C đó chuyển sang lai hóa sp³. Điện tích dương +1 được giải tỏa qua 5 nguyên tử carbon còn lại trong hệ liên hợp (phức chất σ)."
+          reason: "Tác nhân Br⁺ dùng 2 electron π của vòng tạo liên kết C–Br. Điện tích dương +1 được giải tỏa qua 5 nguyên tử carbon còn lại (phức chất σ)."
         },
         {
           id: "s3",
@@ -1205,25 +1405,140 @@
           options: [
             { text: "Vì sự tách H⁺ giải phóng 2 electron của liên kết C–H trở lại vòng, tái lập hệ 6 electron π thơm có độ bền nhiệt động rất lớn.", isCorrect: true },
             { text: "Vì ion [FeBr₄]⁻ không thể nhường lại ion Br⁻ trong bất kỳ điều kiện nào.", isCorrect: false },
-            { text: "Vì proton H⁺ có khối lượng quá nhẹ nên tự động bay hơi khỏi hỗn hợp phản ứng.", isCorrect: false }
+            { text: "Vì proton H⁺ quá nhẹ nên tự động bay hơi khỏi hỗn hợp phản ứng.", isCorrect: false }
           ],
-          reason: "Hệ thơm của vòng benzene có năng lượng cộng hưởng rất thấp (rất bền). Việc tách proton H⁺ cho base [FeBr₄]⁻ tái lập ngay hệ thơm, đồng thời tái sinh xúc tác FeBr₃ và giải phóng HBr."
+          reason: "Hệ thơm của vòng benzene rất bền. Việc tách proton H⁺ cho base [FeBr₄]⁻ tái lập ngay hệ thơm, đồng thời tái sinh xúc tác FeBr₃ và giải phóng HBr."
         }
       ],
-      ex3UserAnswers: {}
+      ex3UserAnswers: {},
+
+      // Exercise 4 Data (Vận dụng thế)
+      ex4MCQ: [
+        {
+          id: "v1",
+          q: "1. Cho isobutane (CH₃)₂CH–CH₃ phản ứng với Cl₂ (tỉ lệ 1:1, chiếu sáng). Sản phẩm thế monoclo chính là:",
+          opts: [
+            "2-chloro-2-methylpropane ((CH₃)₃C–Cl)",
+            "1-chloro-2-methylpropane ((CH₃)₂CH–CH₂Cl)",
+            "2-chlorobutane",
+            "1-chlorobutane"
+          ],
+          correct: 0,
+          exp: "Nguyên tử C số 2 là carbon bậc 3 (bậc cao nhất trong phân tử) nên ưu tiên thế tạo sản phẩm chính (CH₃)₃C–Cl."
+        },
+        {
+          id: "v2",
+          q: "2. Khi đun nóng benzyl chloride (C₆H₅–CH₂Cl) với dung dịch NaOH, sản phẩm hữu cơ thu được là:",
+          opts: [
+            "Benzyl alcohol (C₆H₅–CH₂OH)",
+            "Phenol (C₆H₅–OH)",
+            "Sodium phenolate (C₆H₅–ONa)",
+            "Benzaldehyde (C₆H₅–CHO)"
+          ],
+          correct: 0,
+          exp: "Liên kết C–Cl ở nhánh no rất linh động, dễ dàng bị thủy phân tạo benzyl alcohol: C₆H₅CH₂Cl + NaOH → C₆H₅CH₂OH + NaCl."
+        },
+        {
+          id: "v3",
+          q: "3. Nhóm methyl (–CH₃) trên vòng toluene có tác dụng định hướng phản ứng thế electrophile (S_EAr) ưu tiên vào vị trí nào?",
+          opts: [
+            "Vị trí ortho và para (o-, p-)",
+            "Vị trí meta (m-)",
+            "Chỉ duy nhất vị trí meta",
+            "Định hướng ngẫu nhiên ở cả 3 vị trí"
+          ],
+          correct: 0,
+          exp: "Nhóm –CH₃ là nhóm đẩy electron (hoạt hóa nhân thơm), làm tăng mật độ electron tại các vị trí ortho và para."
+        },
+        {
+          id: "v4",
+          q: "4. Nhóm nitro (–NO₂) trên vòng nitrobenzene định hướng phản ứng thế electrophile tiếp theo vào vị trí nào?",
+          opts: [
+            "Vị trí meta (m-)",
+            "Vị trí ortho (o-)",
+            "Vị trí para (p-)",
+            "Cả ortho và para"
+          ],
+          correct: 0,
+          exp: "Nhóm –NO₂ là nhóm hút electron mạnh (giảm hoạt nhân thơm), làm giảm mật độ electron ở ortho/para nhiều hơn, nên thế ưu tiên vào vị trí meta."
+        },
+        {
+          id: "v5",
+          q: "5. Vì sao chlorobenzene (C₆H₅–Cl) khó tham gia phản ứng thủy phân trong dung dịch kiềm hơn nhiều so với chloroethane (CH₃CH₂Cl)?",
+          opts: [
+            "Do cặp electron p của chlorine liên hợp với hệ electron π của vòng benzene làm liên kết C–Cl bền vững hơn.",
+            "Do chlorobenzene không tan trong nước.",
+            "Do nguyên tử chlorine có khối lượng mol lớn hơn vòng benzene.",
+            "Do vòng benzene hút nước ngăn cản OH⁻ tiếp cận."
+          ],
+          correct: 0,
+          exp: "Hiệu ứng liên hợp p–π làm liên kết C–Cl trong chlorobenzene có một phần tính chất của liên kết đôi (ngắn hơn, bền hơn), rất khó bị bẻ gãy ở điều kiện thường."
+        }
+      ],
+      ex4UserAnswers: {},
+
+      // Exercise 5 Data (CỘNG ELECTROPHILE A_E - ĐÚNG / SAI MỨC ĐỘ BIẾT)
+      ex5Statements: [
+        {
+          id: "ae1",
+          text: "1. Phản ứng cộng electrophile (ký hiệu A<sub>E</sub>) là phản ứng cộng trong đó giai đoạn đầu tiên được khơi mào bởi tác nhân electrophile (mang điện dương hoặc thiếu electron).",
+          correct: true,
+          hint: "Đúng theo định nghĩa SGK Bài 3: A = Addition (Cộng), E = Electrophile."
+        },
+        {
+          id: "ae2",
+          text: "2. Liên kết đôi &gt;C=C&lt; của alkene có mật độ electron π rất phong phú nên dễ dàng bị tấn công bởi các tác nhân electrophile như H⁺ hoặc Br<sup>δ+</sup>.",
+          correct: true,
+          hint: "Đúng. Đám mây electron π phân bố trên và dưới mặt phẳng phân tử, liên kết π lỏng lẻo dễ cho electron."
+        },
+        {
+          id: "ae3",
+          text: "3. Dẫn khí ethylene (CH₂=CH₂) vào dung dịch nước bromine ở điều kiện thường làm dung dịch mất màu nâu đỏ đặc trưng.",
+          correct: true,
+          hint: "Đúng. Phản ứng cộng tạo 1,2-dibromoethane không màu: CH₂=CH₂ + Br₂ → CH₂Br–CH₂Br."
+        },
+        {
+          id: "ae4",
+          text: "4. Trong cơ chế cộng A<sub>E</sub> vào alkene, giai đoạn 1 tạo thành tiểu phân trung gian là carbanion mang điện tích âm.",
+          correct: false,
+          hint: "SAI. Nối đôi nhường electron cho electrophile nên tạo thành tiểu phân trung gian mang điện DƯƠNG là CARBOCATION (C⁺)."
+        },
+        {
+          id: "ae5",
+          text: "5. Theo quy tắc Markovnikov, khi cộng acid HX vào alkene bất đối xứng, nguyên tử H ưu tiên cộng vào carbon nối đôi có ít hydrogen hơn.",
+          correct: false,
+          hint: "SAI. Nguyên tử H ưu tiên cộng vào carbon có NHIỀU HYDROGEN HƠN (carbon bậc thấp hơn) để tạo carbocation bậc cao bền hơn."
+        }
+      ],
+      ex5UserAnswers: {}
     };
 
-    // Timer
-    function startTimer() {
+    // COUNTDOWN TIMER (15 PHÚT = 900 GIÂY)
+    function startCountdown() {
       AppState.timerId = setInterval(() => {
-        const sec = Math.floor((Date.now() - AppState.startTime) / 1000);
-        const m = String(Math.floor(sec / 60)).padStart(2, '0');
-        const s = String(sec % 60).padStart(2, '0');
-        document.getElementById("timer-display").innerText = `${m}:${s}`;
+        if (AppState.timeRemaining > 0) {
+          AppState.timeRemaining--;
+          const m = String(Math.floor(AppState.timeRemaining / 60)).padStart(2, '0');
+          const s = String(AppState.timeRemaining % 60).padStart(2, '0');
+          const disp = document.getElementById("timer-display");
+          disp.innerText = `${m}:${s}`;
+
+          if (AppState.timeRemaining <= 120) {
+            disp.classList.add("time-warning");
+            document.getElementById("timer-lbl").innerText = "⚠️ SẮP HẾT GIỜ!";
+          }
+        } else {
+          // HẾT GIỜ
+          clearInterval(AppState.timerId);
+          AppState.isTimeUp = true;
+          AudioEngine.play('wrong');
+          alert("⏰ ĐÃ HẾT THỜI GIAN LÀM BÀI 15 PHÚT!\nHệ thống đang chuyển đến bảng tổng kết để nộp điểm.");
+          showFinalSummary();
+        }
       }, 1000);
     }
 
-    // Tab Navigation
+    // Switch Exercise Tab
     function switchExercise(tabIdx) {
       AudioEngine.play('click');
       AppState.currentTab = tabIdx;
@@ -1236,21 +1551,20 @@
       document.getElementById("summary-panel").style.display = "none";
     }
 
-    // Render Exercise 1
+    // ==========================================
+    // RENDER BÀI 1 (SẮP XẾP + 5 CÂU MCQ)
+    // ==========================================
     function renderExercise1() {
+      // Phần A: Order
       const container = document.getElementById("ex1-order-list");
       container.innerHTML = "";
-
       AppState.ex1Items.forEach((item, idx) => {
         const card = document.createElement("div");
         card.className = "order-card";
-        card.id = `ex1-item-${item.id}`;
-
         const selPhase = AppState.ex1UserPhases[item.id] || "";
-
         card.innerHTML = `
           <div class="order-left">
-            <div class="step-badge" id="step-num-${idx}">Bước ${idx + 1}</div>
+            <div class="step-badge">Bước ${idx + 1}</div>
             <div class="step-content">
               <div style="font-weight: 700; font-size: 1.05rem; color: #1e1b4b;">${item.reaction}</div>
               <div style="font-size: 0.88rem; color: var(--text-muted); margin-top: 2px;">${item.text}</div>
@@ -1273,6 +1587,29 @@
         `;
         container.appendChild(card);
       });
+
+      // Phần B: 5 MCQ
+      const mcqContainer = document.getElementById("ex1-mcq-list");
+      mcqContainer.innerHTML = "";
+      AppState.ex1MCQ.forEach((m, mIdx) => {
+        const card = document.createElement("div");
+        card.className = "mcq-card";
+        const userChoice = AppState.ex1UserMCQ[m.id];
+        card.innerHTML = `
+          <div class="mcq-title">${m.q}</div>
+          <div class="mcq-options">
+            ${m.opts.map((opt, oIdx) => `
+              <div class="mcq-opt ${userChoice === oIdx ? 'selected' : ''}" 
+                   id="opt-m1-${m.id}-${oIdx}" 
+                   onclick="selectEx1MCQ('${m.id}', ${oIdx})">
+                <div class="mcq-circle">${String.fromCharCode(65 + oIdx)}</div>
+                <div>${opt}</div>
+              </div>
+            `).join("")}
+          </div>
+        `;
+        mcqContainer.appendChild(card);
+      });
     }
 
     function moveEx1Item(idx, dir) {
@@ -1291,54 +1628,71 @@
       AppState.ex1UserPhases[itemId] = val;
     }
 
+    function selectEx1MCQ(mId, optIdx) {
+      if (AppState.checked[0]) return;
+      AudioEngine.play('click');
+      AppState.ex1UserMCQ[mId] = optIdx;
+      renderExercise1();
+    }
+
     function resetExercise1() {
       if (AppState.checked[0] && !confirm("Bạn muốn làm lại Bài tập 1?")) return;
       AppState.checked[0] = false;
       AppState.scores[0] = 0;
       AppState.ex1UserPhases = {};
+      AppState.ex1UserMCQ = {};
       document.getElementById("btn-check-0").disabled = false;
-      document.getElementById("btn-check-0").innerText = "Kiểm tra kết quả (10 điểm)";
+      document.getElementById("btn-check-0").innerText = "Kiểm tra kết quả Bài 1 (10đ)";
       document.getElementById("fb-0").style.display = "none";
       updateHeaderScores();
       renderExercise1();
     }
 
     function checkExercise1() {
-      // Check ordering: 4 points (1 pt each)
+      // Check Phần A: 5 điểm (Sắp xếp 2đ + Giai đoạn 3đ)
       let orderPoints = 0;
       AppState.ex1Items.forEach((it, idx) => {
-        if (it.id === AppState.ex1CorrectOrder[idx]) orderPoints += 1;
+        if (it.id === AppState.ex1CorrectOrder[idx]) orderPoints += 0.5;
       });
-
-      // Check phase selection: 6 points (1.5 pt each)
       let phasePoints = 0;
       AppState.ex1Items.forEach((it) => {
-        if (AppState.ex1UserPhases[it.id] === it.correctPhase) phasePoints += 1.5;
+        if (AppState.ex1UserPhases[it.id] === it.correctPhase) phasePoints += 0.75;
+      });
+      const partAPoints = orderPoints + phasePoints; // Max 5đ
+
+      // Check Phần B: 5 điểm (1đ / câu MCQ)
+      let partBPoints = 0;
+      AppState.ex1MCQ.forEach((m) => {
+        const u = AppState.ex1UserMCQ[m.id];
+        m.opts.forEach((opt, oIdx) => {
+          const el = document.getElementById(`opt-m1-${m.id}-${oIdx}`);
+          if (el) {
+            el.classList.add("locked");
+            if (oIdx === m.correct) el.classList.add("correct");
+            else if (u === oIdx && u !== m.correct) el.classList.add("wrong");
+          }
+        });
+        if (u === m.correct) partBPoints += 1;
       });
 
-      const totalEx1 = orderPoints + phasePoints; // Max 4 + 6 = 10
+      const totalEx1 = Math.round((partAPoints + partBPoints) * 10) / 10;
       AppState.scores[0] = totalEx1;
       AppState.checked[0] = true;
 
       const fb = document.getElementById("fb-0");
-      const fbHead = document.getElementById("fb-heading-0");
-      const fbBody = document.getElementById("fb-body-0");
       fb.style.display = "block";
-
-      const isFull = (totalEx1 === 10);
+      const isFull = (totalEx1 >= 9);
       AudioEngine.play(isFull ? 'correct' : (totalEx1 >= 5 ? 'correct' : 'wrong'));
 
       fb.className = `feedback-panel ${isFull ? 'success' : (totalEx1 >= 5 ? 'partial' : 'fail')}`;
-      fbHead.innerHTML = isFull 
-        ? `🎉 XUẤT SẮC! ĐẠT 10 / 10 ĐIỂM` 
+      document.getElementById("fb-heading-0").innerHTML = isFull 
+        ? `🎉 XUẤT SẮC! ĐẠT ${totalEx1} / 10 ĐIỂM` 
         : `👍 KẾT QUẢ: ĐẠT ${totalEx1} / 10 ĐIỂM`;
 
-      fbBody.innerHTML = `
-        <strong>Trình tự chuẩn xác theo SGK Hóa 12 KNTT (Trang 10):</strong><br>
-        1. <strong>Khởi mào:</strong> Cl–Cl ⎯⎯<sup>hν</sup>⎯→ 2Cl• (năng lượng ánh sáng bẻ gãy liên kết Cl–Cl yếu hơn C–H).<br>
-        2. <strong>Phát triển mạch (Bước 1):</strong> Cl• + CH<sub>4</sub> ⎯→ •CH<sub>3</sub> + HCl.<br>
-        3. <strong>Phát triển mạch (Bước 2):</strong> •CH<sub>3</sub> + Cl<sub>2</sub> ⎯→ CH<sub>3</sub>Cl + Cl• (tái sinh gốc Cl• tiếp tục chuỗi phản ứng dây chuyền).<br>
-        4. <strong>Tắt mạch / Đứt mạch:</strong> Các gốc tự do kết hợp tạo thành phân tử trung hòa (Cl• + Cl• → Cl₂; •CH₃ + Cl• → CH₃Cl; đặc biệt 2•CH₃ → C₂H₆ ethane).
+      document.getElementById("fb-body-0").innerHTML = `
+        <strong>Tóm tắt trọng tâm Bài 1 (SGK Hóa 12 KNTT - Trang 10):</strong><br>
+        • Cơ chế thế gốc S<sub>R</sub> gồm 3 giai đoạn: Khởi mào (tạo gốc Cl•) ➔ Phát triển mạch (Cl• + CH₄ ➔ •CH₃ + HCl; •CH₃ + Cl₂ ➔ CH₃Cl + Cl•) ➔ Đứt mạch (gốc kết hợp tạo phân tử trung hòa).<br>
+        • Halogen hóa alkane ưu tiên thế vào C bậc cao hơn.
       `;
 
       document.getElementById("btn-check-0").disabled = true;
@@ -1347,15 +1701,15 @@
       renderExercise1();
     }
 
-    // Render Exercise 2
+    // ==========================================
+    // RENDER BÀI 2 (5 TIÊU CHÍ MỚI DỄ HƠN)
+    // ==========================================
     function renderExercise2() {
       const tbody = document.getElementById("ex2-matrix-body");
       tbody.innerHTML = "";
-
       AppState.ex2Criteria.forEach((crit) => {
         const tr = document.createElement("tr");
         const userChoice = AppState.ex2UserAnswers[crit.id];
-
         tr.innerHTML = `
           <td><strong>${crit.label}</strong></td>
           <td class="center">
@@ -1404,27 +1758,24 @@
         }
       });
 
-      const totalEx2 = correctCount * 2; // 5 criteria x 2 pts = 10 pts
+      const totalEx2 = correctCount * 2; // 5 x 2đ = 10đ
       AppState.scores[1] = totalEx2;
       AppState.checked[1] = true;
 
       const fb = document.getElementById("fb-1");
-      const fbHead = document.getElementById("fb-heading-1");
-      const fbBody = document.getElementById("fb-body-1");
       fb.style.display = "block";
-
       const isFull = (totalEx2 === 10);
       AudioEngine.play(isFull ? 'correct' : (totalEx2 >= 6 ? 'correct' : 'wrong'));
 
       fb.className = `feedback-panel ${isFull ? 'success' : (totalEx2 >= 6 ? 'partial' : 'fail')}`;
-      fbHead.innerHTML = isFull 
+      document.getElementById("fb-heading-1").innerHTML = isFull 
         ? `🎉 XUẤT SẮC! ĐẠT 10 / 10 ĐIỂM` 
         : `👍 KẾT QUẢ: ĐẠT ${totalEx2} / 10 ĐIỂM`;
 
-      fbBody.innerHTML = `
-        <strong>Phân tích cơ chế vi mô theo SGK Hóa 12 KNTT (Trang 13):</strong><br>
-        • <strong>S<sub>N</sub>1 (Substitution Nucleophilic Unimolecular):</strong> 2 giai đoạn; giai đoạn chậm sinh ra <em>carbocation</em> phẳng; ưu tiên dẫn xuất bậc 3; tác nhân có thể tấn công từ 2 phía dẫn đến racemic hóa một phần.<br>
-        • <strong>S<sub>N</sub>2 (Substitution Nucleophilic Bimolecular):</strong> 1 giai đoạn đồng thời qua <em>trạng thái chuyển tiếp liên kết 5</em>; ưu tiên dẫn xuất bậc 1 và methyl; tác nhân tấn công từ phía sau (backside attack) gây hiện tượng <em>nghịch đảo cấu hình Walden</em>.
+      document.getElementById("fb-body-1").innerHTML = `
+        <strong>Căn cứ SGK Hóa 12 KNTT (Trang 13):</strong><br>
+        • <strong>S<sub>N</sub>1:</strong> Đơn phân tử (số 1); ưu tiên dẫn xuất bậc 3 ((CH₃)₃C–Br).<br>
+        • <strong>S<sub>N</sub>2:</strong> Lưỡng phân tử (số 2); ưu tiên dẫn xuất bậc 1 (CH₃CH₂–Br); tác nhân OH⁻ tấn công từ phía sau liên kết C–X.
       `;
 
       document.getElementById("btn-check-1").disabled = true;
@@ -1432,20 +1783,18 @@
       updateHeaderScores();
     }
 
-    // Render Exercise 3
+    // ==========================================
+    // RENDER BÀI 3 (SEAr BENZENE)
+    // ==========================================
     function renderExercise3() {
       const container = document.getElementById("ex3-stages-container");
       container.innerHTML = "";
-
-      AppState.ex3Stages.forEach((stage, sIdx) => {
+      AppState.ex3Stages.forEach((stage) => {
         const card = document.createElement("div");
         card.className = "sear-stage-card";
         const userSel = AppState.ex3UserAnswers[stage.id];
-
         card.innerHTML = `
-          <div class="sear-stage-title">
-            <span>🔹 ${stage.title}</span>
-          </div>
+          <div class="sear-stage-title"><span>🔹 ${stage.title}</span></div>
           <p style="font-weight: 600; font-size: 0.98rem; margin-bottom: 0.5rem;">${stage.prompt}</p>
           <div class="sear-options-grid">
             ${stage.options.map((opt, oIdx) => `
@@ -1475,48 +1824,36 @@
         return;
       }
 
-      let correctCount = 0;
+      let totalEx3 = 0;
+      if (AppState.ex3Stages[0].options[AppState.ex3UserAnswers['s1']]?.isCorrect) totalEx3 += 3;
+      if (AppState.ex3Stages[1].options[AppState.ex3UserAnswers['s2']]?.isCorrect) totalEx3 += 3.5;
+      if (AppState.ex3Stages[2].options[AppState.ex3UserAnswers['s3']]?.isCorrect) totalEx3 += 3.5;
+
       AppState.ex3Stages.forEach((stage) => {
         const u = AppState.ex3UserAnswers[stage.id];
-        const isCor = stage.options[u] && stage.options[u].isCorrect;
-
         stage.options.forEach((opt, oIdx) => {
           const el = document.getElementById(`opt-stage-${stage.id}-${oIdx}`);
           el.classList.add("locked");
           if (opt.isCorrect) el.classList.add("correct");
           else if (u === oIdx && !opt.isCorrect) el.classList.add("wrong");
         });
-
-        if (isCor) correctCount++;
       });
-
-      // 3 stages: stage 1 = 3 pts, stage 2 = 3.5 pts, stage 3 = 3.5 pts = 10 pts
-      let totalEx3 = 0;
-      if (AppState.ex3Stages[0].options[AppState.ex3UserAnswers['s1']]?.isCorrect) totalEx3 += 3;
-      if (AppState.ex3Stages[1].options[AppState.ex3UserAnswers['s2']]?.isCorrect) totalEx3 += 3.5;
-      if (AppState.ex3Stages[2].options[AppState.ex3UserAnswers['s3']]?.isCorrect) totalEx3 += 3.5;
 
       AppState.scores[2] = totalEx3;
       AppState.checked[2] = true;
 
       const fb = document.getElementById("fb-2");
-      const fbHead = document.getElementById("fb-heading-2");
-      const fbBody = document.getElementById("fb-body-2");
       fb.style.display = "block";
-
       const isFull = (totalEx3 === 10);
       AudioEngine.play(isFull ? 'correct' : (totalEx3 >= 6 ? 'correct' : 'wrong'));
 
       fb.className = `feedback-panel ${isFull ? 'success' : (totalEx3 >= 6 ? 'partial' : 'fail')}`;
-      fbHead.innerHTML = isFull 
-        ? `🎉 XUẤT SẮC! ĐẠT 10 / 10 ĐIỂM` 
-        : `👍 KẾT QUẢ: ĐẠT ${totalEx3} / 10 ĐIỂM`;
-
-      fbBody.innerHTML = `
-        <strong>Tóm tắt 3 bước cơ chế S<sub>E</sub>Ar theo SGK Hóa 12 KNTT (Trang 11 - 12):</strong><br>
-        1. <strong>Tạo tác nhân electrophile:</strong> Br<sub>2</sub> + FeBr<sub>3</sub> ⇄ Br<sup>+</sup> + [FeBr<sub>4</sub>]<sup>-</sup>.<br>
-        2. <strong>Tấn công tạo phức chất σ:</strong> Br<sup>+</sup> tấn công vòng tạo carbocation trung gian giải tỏa điện tích dương qua 5 nguyên tử carbon (mất tính thơm tạm thời).<br>
-        3. <strong>Tái lập hệ thơm:</strong> Tách proton H<sup>+</sup> kết hợp [FeBr<sub>4</sub>]<sup>-</sup> sinh ra bromobenzene C<sub>6</sub>H<sub>5</sub>Br, khí HBr và tái sinh xúc tác FeBr<sub>3</sub>.
+      document.getElementById("fb-heading-2").innerHTML = isFull ? `🎉 XUẤT SẮC! ĐẠT 10 / 10 ĐIỂM` : `👍 KẾT QUẢ: ĐẠT ${totalEx3} / 10 ĐIỂM`;
+      document.getElementById("fb-body-2").innerHTML = `
+        <strong>Cơ chế S<sub>E</sub>Ar vào vòng benzene (SGK Trang 11 - 12):</strong><br>
+        1. Tạo tác nhân: Br₂ + FeBr₃ ⇄ Br⁺ + [FeBr₄]⁻.<br>
+        2. Tấn công tạo phức chất σ: giải tỏa điện tích dương qua 5C.<br>
+        3. Tách H⁺ tái lập ngay hệ thơm bền vững và tái sinh xúc tác FeBr₃.
       `;
 
       document.getElementById("btn-check-2").disabled = true;
@@ -1525,7 +1862,161 @@
     }
 
     // ==========================================
-    // QUẢN LÝ THÔNG TIN HỌC SINH & GỬI ĐIỂM
+    // RENDER BÀI 4 (VẬN DỤNG THẾ HALOGEN)
+    // ==========================================
+    function renderExercise4() {
+      const container = document.getElementById("ex4-mcq-container");
+      container.innerHTML = "";
+      AppState.ex4MCQ.forEach((m) => {
+        const card = document.createElement("div");
+        card.className = "mcq-card";
+        const userChoice = AppState.ex4UserAnswers[m.id];
+        card.innerHTML = `
+          <div class="mcq-title">${m.q}</div>
+          <div class="mcq-options">
+            ${m.opts.map((opt, oIdx) => `
+              <div class="mcq-opt ${userChoice === oIdx ? 'selected' : ''}" 
+                   id="opt-ex4-${m.id}-${oIdx}" 
+                   onclick="selectEx4('${m.id}', ${oIdx})">
+                <div class="mcq-circle">${String.fromCharCode(65 + oIdx)}</div>
+                <div>${opt}</div>
+              </div>
+            `).join("")}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function selectEx4(mId, optIdx) {
+      if (AppState.checked[3]) return;
+      AudioEngine.play('click');
+      AppState.ex4UserAnswers[mId] = optIdx;
+      renderExercise4();
+    }
+
+    function checkExercise4() {
+      if (Object.keys(AppState.ex4UserAnswers).length < AppState.ex4MCQ.length) {
+        alert("Vui lòng trả lời đủ cả 5 câu hỏi của Bài 4 trước khi kiểm tra!");
+        return;
+      }
+
+      let correctCount = 0;
+      AppState.ex4MCQ.forEach((m) => {
+        const u = AppState.ex4UserAnswers[m.id];
+        m.opts.forEach((opt, oIdx) => {
+          const el = document.getElementById(`opt-ex4-${m.id}-${oIdx}`);
+          el.classList.add("locked");
+          if (oIdx === m.correct) el.classList.add("correct");
+          else if (u === oIdx && u !== m.correct) el.classList.add("wrong");
+        });
+        if (u === m.correct) correctCount++;
+      });
+
+      const totalEx4 = correctCount * 2; // 5 x 2đ = 10đ
+      AppState.scores[3] = totalEx4;
+      AppState.checked[3] = true;
+
+      const fb = document.getElementById("fb-3");
+      fb.style.display = "block";
+      const isFull = (totalEx4 === 10);
+      AudioEngine.play(isFull ? 'correct' : (totalEx4 >= 6 ? 'correct' : 'wrong'));
+
+      fb.className = `feedback-panel ${isFull ? 'success' : (totalEx4 >= 6 ? 'partial' : 'fail')}`;
+      document.getElementById("fb-heading-3").innerHTML = isFull ? `🎉 XUẤT SẮC! ĐẠT 10 / 10 ĐIỂM` : `👍 KẾT QUẢ: ĐẠT ${totalEx4} / 10 ĐIỂM`;
+      document.getElementById("fb-body-3").innerHTML = `
+        <strong>Căn cứ lý thuyết:</strong><br>
+        • Nhóm đẩy electron (–CH₃, –OH) định hướng thế ortho/para.<br>
+        • Nhóm hút electron (–NO₂, –COOH) định hướng thế meta.<br>
+        • Liên kết C–Cl gắn trực tiếp vào vòng benzene bền vững do liên hợp p–π.
+      `;
+
+      document.getElementById("btn-check-3").disabled = true;
+      document.getElementById("btn-check-3").innerText = "Đã kiểm tra ✔️";
+      updateHeaderScores();
+    }
+
+    // ==========================================
+    // RENDER BÀI 5 (CỘNG ELECTROPHILE A_E - ĐÚNG / SAI)
+    // ==========================================
+    function renderExercise5() {
+      const tbody = document.getElementById("ex5-tf-body");
+      tbody.innerHTML = "";
+      AppState.ex5Statements.forEach((st) => {
+        const tr = document.createElement("tr");
+        const userVal = AppState.ex5UserAnswers[st.id];
+        tr.innerHTML = `
+          <td><strong>${st.text}</strong></td>
+          <td class="center">
+            <button class="tf-btn ${userVal === true ? 'active-true' : ''}" 
+                    id="btn-tf5-${st.id}-true" 
+                    onclick="setTF5('${st.id}', true)">Đúng</button>
+          </td>
+          <td class="center">
+            <button class="tf-btn ${userVal === false ? 'active-false' : ''}" 
+                    id="btn-tf5-${st.id}-false" 
+                    onclick="setTF5('${st.id}', false)">Sai</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function setTF5(stId, val) {
+      if (AppState.checked[4]) return;
+      AudioEngine.play('click');
+      AppState.ex5UserAnswers[stId] = val;
+      renderExercise5();
+    }
+
+    function checkExercise5() {
+      if (Object.keys(AppState.ex5UserAnswers).length < AppState.ex5Statements.length) {
+        alert("Vui lòng trả lời Đúng hoặc Sai cho cả 5 nhận định của Bài 5!");
+        return;
+      }
+
+      let correctCount = 0;
+      AppState.ex5Statements.forEach((st) => {
+        const u = AppState.ex5UserAnswers[st.id];
+        const btnT = document.getElementById(`btn-tf5-${st.id}-true`);
+        const btnF = document.getElementById(`btn-tf5-${st.id}-false`);
+        btnT.classList.add("locked");
+        btnF.classList.add("locked");
+
+        if (u === st.correct) {
+          correctCount++;
+          if (u === true) btnT.classList.add("correct-val");
+          else btnF.classList.add("correct-val");
+        } else {
+          if (u === true) btnT.classList.add("wrong-val");
+          else btnF.classList.add("wrong-val");
+        }
+      });
+
+      const totalEx5 = correctCount * 2; // 5 x 2đ = 10đ
+      AppState.scores[4] = totalEx5;
+      AppState.checked[4] = true;
+
+      const fb = document.getElementById("fb-4");
+      fb.style.display = "block";
+      const isFull = (totalEx5 === 10);
+      AudioEngine.play(isFull ? 'correct' : (totalEx5 >= 6 ? 'correct' : 'wrong'));
+
+      fb.className = `feedback-panel ${isFull ? 'success' : (totalEx5 >= 6 ? 'partial' : 'fail')}`;
+      document.getElementById("fb-heading-4").innerHTML = isFull ? `🎉 XUẤT SẮC! ĐẠT 10 / 10 ĐIỂM` : `👍 KẾT QUẢ: ĐẠT ${totalEx5} / 10 ĐIỂM`;
+      document.getElementById("fb-body-4").innerHTML = `
+        <strong>Cơ chế cộng Electrophile A<sub>E</sub> vào Alkene (SGK Bài 3 - Trang 14-16):</strong><br>
+        • Nối đôi &gt;C=C&lt; giàu electron π phản ứng với electrophile tạo trung gian <strong>carbocation (C⁺)</strong> mang điện dương (không phải anion).<br>
+        • Quy tắc Markovnikov: H ưu tiên cộng vào carbon có NHIỀU H HƠN để tạo carbocation bậc cao bền vững hơn.
+      `;
+
+      document.getElementById("btn-check-4").disabled = true;
+      document.getElementById("btn-check-4").innerText = "Đã kiểm tra ✔️";
+      updateHeaderScores();
+    }
+
+    // ==========================================
+    // THÔNG TIN HỌC SINH & GỬI ĐIỂM
     // ==========================================
     function openStudentModal() {
       AudioEngine.play('click');
@@ -1569,7 +2060,6 @@
       return false;
     }
 
-    // Tạo mã xác thực chống sửa điểm
     function generateVerifyCode(totalScore) {
       const nameStr = (AppState.studentInfo.name || "HS").normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, "").toUpperCase();
       const classStr = (AppState.studentInfo.className || "12").replace(/\s+/g, "").toUpperCase();
@@ -1578,7 +2068,6 @@
       return `KNTT12-${classStr}-${nameStr.slice(0, 8)}-${totalScore}D-${hex}`;
     }
 
-    // Gửi điểm về Google Sheets của giáo viên
     function submitToGoogleSheets() {
       if (!AppState.studentInfo.name || !AppState.studentInfo.className) {
         alert("Vui lòng nhập Họ Tên và Lớp trước khi nộp điểm!");
@@ -1594,7 +2083,6 @@
 
       statusEl.style.display = "block";
 
-      // Kiểm tra xem giáo viên đã gắn link Google Apps Script Web App chưa
       if (!GOOGLE_SHEET_WEBAPP_URL || GOOGLE_SHEET_WEBAPP_URL.includes("YOUR_GOOGLE_APPS_SCRIPT_URL_HERE") || !GOOGLE_SHEET_WEBAPP_URL.startsWith("http")) {
         statusEl.style.color = "#b45309";
         statusEl.innerHTML = `
@@ -1618,12 +2106,13 @@
         score1: AppState.scores[0],
         score2: AppState.scores[1],
         score3: AppState.scores[2],
+        score4: AppState.scores[3],
+        score5: AppState.scores[4],
         totalScore: sum,
-        timeSpent: timerStr,
+        timeRemaining: timerStr,
         verifyCode: verifyCode
       };
 
-      // Gửi ngầm qua fetch mode no-cors
       fetch(GOOGLE_SHEET_WEBAPP_URL, {
         method: "POST",
         mode: "no-cors",
@@ -1635,9 +2124,9 @@
         statusEl.style.color = "#15803d";
         statusEl.innerHTML = `
           ✅ <strong>NỘP BÀI THÀNH CÔNG!</strong><br>
-          Điểm số của <strong>${AppState.studentInfo.name}</strong> (${sum}/30 điểm) đã được ghi nhận vào Sổ điểm của giáo viên.<br>
+          Điểm số của <strong>${AppState.studentInfo.name}</strong> (${sum}/50 điểm) đã được ghi nhận vào Sổ điểm của giáo viên.<br>
           <span style="font-size: 0.85rem; font-weight: normal; color: var(--text-muted);">
-            Em có thể chụp ảnh màn hình này hoặc bấm "Sao chép mã xác nhận" để nộp lên Google Classroom.
+            Em có thể bấm "Sao chép mã xác nhận" để nộp kèm vào Google Classroom.
           </span>
         `;
         btn.innerText = "Đã lưu điểm thành công ✔️";
@@ -1656,97 +2145,111 @@
       const code = document.getElementById("sub-verify-code").innerText;
       navigator.clipboard.writeText(code).then(() => {
         AudioEngine.play('correct');
-        alert(`Đã sao chép mã nộp bài: ${code}\n\nEm hãy vào Google Classroom, mở bài tập này và Dán mã vào phần "Nhận xét riêng tư" rồi bấm Hoàn thành nhé!`);
+        alert(`Đã sao chép mã nộp bài: ${code}\n\nEm hãy vào Google Classroom, mở bài tập này và Dán mã vào phần "Nhận xét riêng tư" rồi bấm Đã nộp bài nhé!`);
       }).catch(() => {
         alert(`Mã nộp bài của em: ${code}`);
       });
     }
 
-    // Dashboard score updater
     function updateHeaderScores() {
       const sum = AppState.scores.reduce((a, b) => a + b, 0);
-      document.getElementById("total-score-display").innerText = `${sum} / 30`;
-      document.getElementById("tab-score-0").innerText = `${AppState.scores[0]}/10đ`;
-      document.getElementById("tab-score-1").innerText = `${AppState.scores[1]}/10đ`;
-      document.getElementById("tab-score-2").innerText = `${AppState.scores[2]}/10đ`;
+      document.getElementById("total-score-display").innerText = `${sum} / 50`;
+      for (let i = 0; i <= 4; i++) {
+        document.getElementById(`tab-score-${i}`).innerText = `${AppState.scores[i]}/10đ`;
+      }
     }
 
-    // Final Summary View
     function showFinalSummary() {
       AudioEngine.play('correct');
+      clearInterval(AppState.timerId); // Dừng đếm lùi
+
       document.querySelectorAll(".exercise-view").forEach(v => v.classList.remove("active"));
       const summaryPanel = document.getElementById("summary-panel");
       summaryPanel.style.display = "block";
 
       const sum = AppState.scores.reduce((a, b) => a + b, 0);
       document.getElementById("final-total-pts").innerText = sum;
-      document.getElementById("sum-score-0").innerText = `${AppState.scores[0]} / 10 điểm`;
-      document.getElementById("sum-score-1").innerText = `${AppState.scores[1]} / 10 điểm`;
-      document.getElementById("sum-score-2").innerText = `${AppState.scores[2]} / 10 điểm`;
+      for (let i = 0; i <= 4; i++) {
+        document.getElementById(`sum-score-${i}`).innerText = `${AppState.scores[i]} / 10đ`;
+      }
 
-      const pct = Math.round((sum / 30) * 100);
+      const pct = Math.round((sum / 50) * 100);
       document.getElementById("score-banner-circle").style.setProperty("--score-pct", pct);
 
-      // Cập nhật thông tin nộp bài
       const vCode = generateVerifyCode(sum);
       document.getElementById("sub-verify-code").innerText = vCode;
       document.getElementById("sub-student-name").innerText = AppState.studentInfo.name || "Chưa nhập tên";
       document.getElementById("sub-student-class").innerText = AppState.studentInfo.className || "Chưa nhập lớp";
 
       let evalMsg = "";
-      if (sum >= 27) {
-        evalMsg = "🌟 ĐẠT LOẠI XUẤT SẮC! Em đã làm chủ hoàn toàn các cơ chế phản ứng thế (S_R, S_EAr, S_N1, S_N2).";
-      } else if (sum >= 20) {
-        evalMsg = "👏 ĐẠT LOẠI GIỎI! Em nắm rất chắc bản chất cơ chế, chỉ cần lưu ý thêm một số chi tiết vi mô.";
-      } else if (sum >= 15) {
-        evalMsg = "⚡ ĐẠT YÊU CẦU! Em nên xem lại phần so sánh trạng thái chuyển tiếp S_N1 và S_N2 ở Bài tập 2.";
+      if (sum >= 45) {
+        evalMsg = "🌟 ĐẠT LOẠI XUẤT SẮC! Em đã làm chủ toàn diện các cơ chế phản ứng hữu cơ 12.";
+      } else if (sum >= 35) {
+        evalMsg = "👏 ĐẠT LOẠI GIỎI! Em nắm rất chắc bản chất cơ chế thế và cộng.";
+      } else if (sum >= 25) {
+        evalMsg = "⚡ ĐẠT YÊU CẦU! Em nên xem lại phần cơ chế thế S_N1/S_N2 và quy tắc Markovnikov.";
       } else {
-        evalMsg = "📖 CẦN CỐ GẮNG ÔN TẬP! Hãy đọc lại SGK Chuyên đề Hóa học 12 Bài 2 và làm lại để củng cố kiến thức.";
+        evalMsg = "📖 CẦN CỐ GẮNG ÔN TẬP! Hãy đọc lại SGK Chuyên đề Hóa học 12 Bài 2 & 3.";
       }
       document.getElementById("evaluation-text").innerText = evalMsg;
     }
 
     function restartAll() {
-      if (!confirm("Em có chắc chắn muốn làm lại từ đầu không? Toàn bộ điểm số sẽ được reset.")) return;
-      AppState.scores = [0, 0, 0];
-      AppState.checked = [false, false, false];
+      if (!confirm("Em có chắc chắn muốn làm lại từ đầu không? Toàn bộ điểm và thời gian 15 phút sẽ được reset.")) return;
+      AppState.scores = [0, 0, 0, 0, 0];
+      AppState.checked = [false, false, false, false, false];
       AppState.ex1UserPhases = {};
+      AppState.ex1UserMCQ = {};
       AppState.ex2UserAnswers = {};
       AppState.ex3UserAnswers = {};
-      AppState.startTime = Date.now();
+      AppState.ex4UserAnswers = {};
+      AppState.ex5UserAnswers = {};
+      AppState.timeRemaining = 15 * 60;
+      AppState.isTimeUp = false;
 
-      for (let i = 0; i <= 2; i++) {
-        document.getElementById(`btn-check-${i}`).disabled = false;
-        document.getElementById(`btn-check-${i}`).innerText = "Kiểm tra kết quả (10 điểm)";
-        document.getElementById(`fb-${i}`).style.display = "none";
+      for (let i = 0; i <= 4; i++) {
+        const btn = document.getElementById(`btn-check-${i}`);
+        if (btn) {
+          btn.disabled = false;
+          btn.innerText = `Kiểm tra kết quả Bài ${i + 1} (10đ)`;
+        }
+        const fb = document.getElementById(`fb-${i}`);
+        if (fb) fb.style.display = "none";
       }
 
       const statusEl = document.getElementById("submit-status-msg");
       if (statusEl) statusEl.style.display = "none";
-      const btn = document.getElementById("btn-submit-sheet");
-      if (btn) {
-        btn.disabled = false;
-        btn.innerText = "🚀 Gửi điểm về Google Sheets của Thầy/Cô";
+      const btnSub = document.getElementById("btn-submit-sheet");
+      if (btnSub) {
+        btnSub.disabled = false;
+        btnSub.innerText = "🚀 Gửi điểm về Google Sheets của Thầy/Cô";
       }
+
+      clearInterval(AppState.timerId);
+      startCountdown();
 
       updateHeaderScores();
       renderExercise1();
       renderExercise2();
       renderExercise3();
+      renderExercise4();
+      renderExercise5();
       switchExercise(0);
     }
 
     // Init
     window.addEventListener("DOMContentLoaded", () => {
-      startTimer();
+      startCountdown();
       renderExercise1();
       renderExercise2();
       renderExercise3();
+      renderExercise4();
+      renderExercise5();
       updateHeaderScores();
 
       const hasInfo = loadSavedStudentInfo();
       if (!hasInfo) {
-        setTimeout(openStudentModal, 400);
+        setTimeout(openStudentModal, 300);
       }
     });
   </script>
