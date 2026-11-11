@@ -1136,6 +1136,10 @@
         </div>
       </div>
 
+      <div id="final-score-10" style="display: inline-block; background: linear-gradient(135deg, #e0f2fe, #dbeafe); color: #1d4ed8; font-weight: 800; font-size: 1.15rem; padding: 0.45rem 1.25rem; border-radius: 999px; border: 1.5px solid #93c5fd; margin-bottom: 1rem;">
+        Điểm quy đổi (Thang 10): 0 / 10 điểm
+      </div>
+
       <div id="evaluation-text" style="font-size: 1.15rem; font-weight: 800; margin-bottom: 1.5rem; color: var(--primary);"></div>
 
       <div class="summary-grid">
@@ -2098,6 +2102,7 @@
       statusEl.innerHTML = "📡 Đang truyền điểm số về Sổ điểm Google Sheets của giáo viên...";
       btn.disabled = true;
 
+      const score10 = Math.round((sum / 5) * 10) / 10;
       const payload = {
         timestamp: new Date().toLocaleString("vi-VN"),
         studentName: AppState.studentInfo.name,
@@ -2109,6 +2114,7 @@
         score4: AppState.scores[3],
         score5: AppState.scores[4],
         totalScore: sum,
+        score10: score10,
         timeRemaining: timerStr,
         verifyCode: verifyCode
       };
@@ -2124,7 +2130,7 @@
         statusEl.style.color = "#15803d";
         statusEl.innerHTML = `
           ✅ <strong>NỘP BÀI THÀNH CÔNG!</strong><br>
-          Điểm số của <strong>${AppState.studentInfo.name}</strong> (${sum}/50 điểm) đã được ghi nhận vào Sổ điểm của giáo viên.<br>
+          Điểm số của <strong>${AppState.studentInfo.name}</strong> (${sum}/50 điểm — Quy đổi: <strong>${score10}/10 điểm</strong>) đã được ghi nhận vào Sổ điểm của giáo viên.<br>
           <span style="font-size: 0.85rem; font-weight: normal; color: var(--text-muted);">
             Em có thể bấm "Sao chép mã xác nhận" để nộp kèm vào Google Classroom.
           </span>
@@ -2168,7 +2174,12 @@
       summaryPanel.style.display = "block";
 
       const sum = AppState.scores.reduce((a, b) => a + b, 0);
+      const score10 = Math.round((sum / 5) * 10) / 10;
       document.getElementById("final-total-pts").innerText = sum;
+      const score10El = document.getElementById("final-score-10");
+      if (score10El) {
+        score10El.innerHTML = `Điểm quy đổi (Thang 10): <strong>${score10} / 10</strong> điểm`;
+      }
       for (let i = 0; i <= 4; i++) {
         document.getElementById(`sum-score-${i}`).innerText = `${AppState.scores[i]} / 10đ`;
       }
